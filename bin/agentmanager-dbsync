@@ -1,0 +1,9 @@
+#!/usr/bin/python
+# PBR Generated from 'console_scripts'
+import sys
+
+from agentmanager.db.models import register_models
+
+
+register_models()
+sys.exit()

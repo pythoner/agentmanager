@@ -1,0 +1,39 @@
+{
+    "admin_required": "role:admin",
+    "cloud_admin": "rule:admin_required and domain_id:default",
+    "cloud_admin_and_agentmanager_user": "rule:cloud_admin and user_name:agentmanager",
+
+    "default": "rule:admin_required",
+
+    "account:create_account": "rule:cloud_admin",
+    "account:delete_account": "rule:cloud_admin",
+    "account:update_account": "rule:cloud_admin",
+    "account:get_account": "",
+    "account:list_accounts": "",
+
+    "agent:create_agent": "rule:admin_or_owner",
+    "agent:delete_agent": "rule:admin_or_owner",
+    "agent:update_agent": "rule:admin_or_owner",
+    "agent:show_agent": "",
+    "agent:list_agents": "rule:admin_or_owner",
+    
+    "account:create_chargingitem": "rule:cloud_admin_and_agentmanager_user",
+    "account:delete_chargingitem": "!",
+    "account:get_chargingitem": "",
+    "account:list_chargingitems": "",
+    
+    "account:create_invcode": "rule:cloud_admin",
+    "account:delete_invcode": "rule:cloud_admin",
+    "account:update_invcode": "",
+    "account:check_invcode": "",
+    "account:get_invcode": "rule:cloud_admin",
+    "account:list_invcodes": "rule:cloud_admin",
+    
+    "account:create_payment": "rule:cloud_admin_and_agentmanager_user",
+    "account:delete_payment": "!",
+    "account:update_payment": "rule:cloud_admin_and_agentmanager_user",
+    "account:get_payment": "",
+    "account:list_payments": ""
+	
+}
+

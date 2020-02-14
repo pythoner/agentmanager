@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: agentmanager
+  name: agentmanager
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: agentmanager
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: agentmanager
+    spec:
+      containers:
+      - image: agentmanager:latest
+        #imagePullPolicy: IfNotPresent 
+        imagePullPolicy: Never 
+        name: api
+        env:
+        - name: MONGO_URL
+          value: "mongodb://mongo-service"
+        - name: API_AUTH_MODE
+          value: "None"
+        - name: AUTH_URL
+          value: "http://isddc-keystone:31500"
+        - name: PROJECT_DOMAIN_ID
+          value: "default"
+        - name: USER_DOMAIN_ID
+          value: "default"
+        - name: PROJECT_NAME
+          value: "mini-mon"
+        - name: PASSWORD
+          value: "password"
+        - name: API_PORT
+          value: "8000"
+
+---
+
+  apiVersion: v1
+  kind: Service
+  metadata:
+    name: agentmanager-api
+    namespace: isddc
+    labels:
+      name: agentmanager-api
+  spec:
+    type: NodePort
+    ports:
+    - nodePort: 32364
+      port: 8000
+      targetPort: 8000
+      protocol: TCP
+    selector:
+      app: agentmanager
+  
+

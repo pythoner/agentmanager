@@ -1,0 +1,5 @@
+[gerrit]
+host=cicd.thinkcloud.lenovo.com
+port=29418
+project=thinkcloud_ci/agentmanager
+defaultbranch=master

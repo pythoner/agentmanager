@@ -1,0 +1,8 @@
+#!/usr/bin/python
+# PBR Generated from 'console_scripts'
+import sys
+
+from agentmanager.api.api import agentmanager_api
+
+
+sys.exit(agentmanager_api())

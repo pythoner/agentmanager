@@ -1,0 +1,22 @@
+FROM centos:7
+
+WORKDIR /opt
+COPY ./  /opt
+
+RUN curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
+RUN sed -i -e '/mirrors.cloud.aliyuncs.com/d' -e '/mirrors.aliyuncs.com/d' /etc/yum.repos.d/CentOS-Base.repo && yum makecache
+
+RUN yum install -y epel-release
+RUN yum install -y python2-pip
+
+RUN cd /opt && pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+
+RUN cd /opt && python setup.py install 
+
+
+COPY ./bin/agentmanager-api  /usr/local/bin/
+
+EXPOSE 8090
+
+CMD ["agentmanager-api"]
+
